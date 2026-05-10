@@ -90,7 +90,7 @@ const products = [
 ]
 
 const heroImage =
-  'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=2000&q=80'
+  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2200&q=80'
 
 function BakeryImage({ src, alt, className, loading = 'lazy' }) {
   const [imgSrc, setImgSrc] = useState(src)
@@ -186,19 +186,20 @@ function Hero() {
         className="h-[66vh] min-h-[390px] w-full max-w-full object-cover object-center sm:h-[74vh] sm:min-h-[500px]"
         loading="eager"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1f130a]/88 via-[#2f1e13]/68 to-[#2f1e13]/28" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#140c06]/92 via-[#23150c]/72 to-[#2f1e13]/36" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#140c06]/72 via-transparent to-transparent" />
       <div className="absolute inset-0 mx-auto flex w-full max-w-7xl items-center px-3 sm:px-6 lg:px-8">
-        <div className="max-w-xl text-cream">
-          <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-latte sm:mb-4 sm:text-sm sm:tracking-[0.3em]">Baked with love, made for memories</p>
-          <h1 className="font-display text-4xl leading-[0.95] drop-shadow-lg sm:text-6xl">Indulge in Pure Delight</h1>
-          <p className="mt-4 max-w-lg text-sm text-[#f4e8d8] sm:mt-5 sm:text-base">
+        <div className="max-w-2xl rounded-2xl border border-white/20 bg-black/25 p-4 text-cream shadow-luxe backdrop-blur-[2px] sm:p-8">
+          <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#efd9bd] sm:mb-4 sm:text-sm sm:tracking-[0.3em]">Baked with love, made for memories</p>
+          <h1 className="font-display text-5xl font-semibold leading-[0.93] text-white drop-shadow-xl sm:text-7xl">Indulge in Pure Delight</h1>
+          <p className="mt-4 max-w-xl text-base text-[#f7ead8] sm:mt-5 sm:text-lg">
             Exquisite cakes, pastries and desserts crafted with the finest ingredients to make every moment special.
           </p>
           <div className="mt-6 flex flex-col gap-2.5 min-[420px]:flex-row sm:mt-8 sm:flex-wrap sm:gap-3">
-            <button className="w-full rounded-full border border-cream bg-cream px-5 py-2.5 text-sm font-semibold text-espresso transition hover:-translate-y-0.5 hover:bg-latte min-[420px]:w-auto sm:px-6 sm:py-3">
+            <button className="w-full rounded-full border border-[#1f120a] bg-espresso px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#1f120a] min-[420px]:w-auto sm:px-6 sm:py-3">
               Order on WhatsApp
             </button>
-            <button className="w-full rounded-full border border-cream/80 px-5 py-2.5 text-sm font-semibold text-cream transition hover:-translate-y-0.5 hover:bg-cream/15 min-[420px]:w-auto sm:px-6 sm:py-3">
+            <button className="w-full rounded-full border border-white/85 bg-transparent px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15 min-[420px]:w-auto sm:px-6 sm:py-3">
               Explore Our Menu
             </button>
           </div>
