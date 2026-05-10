@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import fallbackImage from './assets/maison-crumb-reference.png'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -28,7 +29,7 @@ const products = [
     description: 'Moist cocoa sponge layered with silky ganache.',
     price: 'PKR 4,200',
     image:
-      'https://source.unsplash.com/1200x900/?luxury,cake,bakery&sig=1',
+      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80',
   },
   {
     category: 'Birthday Cakes',
@@ -36,7 +37,7 @@ const products = [
     description: 'Elegant vanilla cream cake for special occasions.',
     price: 'PKR 3,800',
     image:
-      'https://source.unsplash.com/1200x900/?birthday,cake,patisserie&sig=2',
+      'https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=1200&q=80',
   },
   {
     category: 'Pastries',
@@ -44,7 +45,7 @@ const products = [
     description: 'Flaky, golden pastries with delicate artisanal layers.',
     price: 'PKR 680',
     image:
-      'https://source.unsplash.com/1200x900/?french,pastry,bakery&sig=3',
+      'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=1200&q=80',
   },
   {
     category: 'Breads',
@@ -52,7 +53,7 @@ const products = [
     description: 'Slow fermented loaf with deep aroma and crisp crust.',
     price: 'PKR 950',
     image:
-      'https://source.unsplash.com/1200x900/?artisan,bread,bakery&sig=4',
+      'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
   },
   {
     category: 'Brownies',
@@ -60,7 +61,7 @@ const products = [
     description: 'Dense chocolate brownies with rich cocoa notes.',
     price: 'PKR 550',
     image:
-      'https://source.unsplash.com/1200x900/?brownies,chocolate,dessert&sig=5',
+      'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=1200&q=80',
   },
   {
     category: 'Cupcakes',
@@ -68,7 +69,7 @@ const products = [
     description: 'Soft cupcake crowned with smooth praline buttercream.',
     price: 'PKR 450',
     image:
-      'https://source.unsplash.com/1200x900/?cupcake,bakery,cream&sig=6',
+      'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=1200&q=80',
   },
   {
     category: 'Dessert Boxes',
@@ -76,7 +77,7 @@ const products = [
     description: 'Curated collection of signature petit desserts.',
     price: 'PKR 2,750',
     image:
-      'https://source.unsplash.com/1200x900/?dessert,box,patisserie&sig=7',
+      'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80',
   },
   {
     category: 'Gifts',
@@ -84,9 +85,30 @@ const products = [
     description: 'Luxury bakery gift assortment with elegant packaging.',
     price: 'PKR 3,600',
     image:
-      'https://source.unsplash.com/1200x900/?gift,box,bakery,luxury&sig=8',
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
   },
 ]
+
+const heroImage =
+  'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=2000&q=80'
+
+function BakeryImage({ src, alt, className, loading = 'lazy' }) {
+  const [imgSrc, setImgSrc] = useState(src)
+
+  useEffect(() => {
+    setImgSrc(src)
+  }, [src])
+
+  return (
+    <img
+      src={imgSrc}
+      alt={alt}
+      className={className}
+      loading={loading}
+      onError={() => setImgSrc(fallbackImage)}
+    />
+  )
+}
 
 function Navbar({ mobileOpen, setMobileOpen, scrolled }) {
   const handleMobileNavigate = () => setMobileOpen(false)
@@ -157,10 +179,12 @@ function Navbar({ mobileOpen, setMobileOpen, scrolled }) {
 function Hero() {
   return (
     <section id="home" className="relative overflow-hidden">
-      <img
-        src="https://source.unsplash.com/1920x1200/?luxury,bakery,chocolate,dessert&sig=11"
+      <div className="absolute inset-0 bg-[#2b1b11]" />
+      <BakeryImage
+        src={heroImage}
         alt="Luxury bakery hero"
         className="h-[66vh] min-h-[390px] w-full max-w-full object-cover object-center sm:h-[74vh] sm:min-h-[500px]"
+        loading="eager"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#1f130a]/88 via-[#2f1e13]/68 to-[#2f1e13]/28" />
       <div className="absolute inset-0 mx-auto flex w-full max-w-7xl items-center px-3 sm:px-6 lg:px-8">
@@ -218,12 +242,14 @@ function ProductSection() {
             className="group overflow-hidden rounded-2xl border border-[#dcc8aa] bg-gradient-to-b from-[#fffaf3] to-white shadow-[0_8px_22px_rgba(64,38,16,0.08)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_34px_rgba(64,38,16,0.18)]"
           >
             <div className="overflow-hidden">
-              <img
+              <div className="bg-[#d9c2a2]">
+                <BakeryImage
                 src={product.image}
                 alt={product.name}
                 className="aspect-[4/3] w-full max-w-full object-cover transition duration-500 group-hover:scale-105"
                 loading={index < 3 ? 'eager' : 'lazy'}
-              />
+                />
+              </div>
             </div>
             <div className="space-y-2 p-4">
               <p className="text-[11px] uppercase tracking-[0.16em] text-[#a1815b]">{product.category}</p>
