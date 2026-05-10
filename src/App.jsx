@@ -39,7 +39,9 @@ const birthdayCakes = [
   { name: 'Minimal Korean Cake', detail: 'Clean modern styling with delicate script personalization.', image: 'https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?auto=format&fit=crop&w=1400&q=80' },
 ]
 
-const heroImage = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2200&q=80'
+// Direct Unsplash CDN — editorial chocolate dessert / bakery table (verified for production URLs)
+const heroImage =
+  'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=2400&q=85'
 
 function BakeryImage({ src, alt, className, loading = 'lazy' }) {
   const [imgSrc, setImgSrc] = useState(src)
@@ -98,19 +100,50 @@ function Navbar({ mobileOpen, setMobileOpen, scrolled }) {
 
 function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#2b1b11]" />
-      <BakeryImage src={heroImage} alt="Luxury bakery hero" className="h-[66vh] min-h-[390px] w-full max-w-full object-cover object-center sm:h-[74vh] sm:min-h-[500px]" loading="eager" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#140c06]/92 via-[#23150c]/72 to-[#2f1e13]/36" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#140c06]/72 via-transparent to-transparent" />
-      <div className="absolute inset-0 mx-auto flex w-full max-w-7xl items-center px-3 sm:px-6 lg:px-8">
-        <div className="max-w-2xl rounded-2xl border border-white/20 bg-black/25 p-4 text-cream shadow-luxe backdrop-blur-[2px] sm:p-8">
-          <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#efd9bd] sm:mb-4 sm:text-sm sm:tracking-[0.3em]">Baked with love, made for memories</p>
-          <h1 className="font-display text-5xl font-semibold leading-[0.93] text-white drop-shadow-xl sm:text-7xl">Indulge in Pure Delight</h1>
-          <p className="mt-4 max-w-xl text-base text-[#f7ead8] sm:mt-5 sm:text-lg">Exquisite cakes, pastries and desserts crafted with the finest ingredients to make every moment special.</p>
+    <section
+      id="home"
+      className="relative isolate min-h-[max(66vh,390px)] overflow-hidden sm:min-h-[max(74vh,500px)]"
+    >
+      {/* Fallback base if image is slow; real photo is always applied via background-image below */}
+      <div className="absolute inset-0 z-0 bg-[#2b1a12]" aria-hidden />
+      <div
+        className="absolute inset-0 z-[1] bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url("${heroImage}")` }}
+        role="img"
+        aria-label="Luxury chocolate cake and desserts on a bakery table"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-[#120a05]/94 via-[#1f120a]/78 to-[#2c1810]/45"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-[#0d0805]/90 via-[#0d0805]/25 to-transparent"
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto flex min-h-[max(66vh,390px)] w-full max-w-7xl items-center px-3 py-12 sm:min-h-[max(74vh,500px)] sm:px-6 sm:py-16 lg:px-8">
+        <div className="max-w-2xl rounded-2xl border border-white/15 bg-black/35 p-4 text-cream shadow-luxe backdrop-blur-[3px] sm:p-8">
+          <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.22em] text-[#f5e6d3] sm:mb-4 sm:text-sm sm:tracking-[0.3em]">
+            Baked with love, made for memories
+          </p>
+          <h1 className="font-display text-5xl font-semibold leading-[0.93] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)] sm:text-7xl">
+            Indulge in Pure Delight
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-[#fff4e8] sm:mt-5 sm:text-lg">
+            Exquisite cakes, pastries and desserts crafted with the finest ingredients to make every moment special.
+          </p>
           <div className="mt-6 flex flex-col gap-2.5 min-[420px]:flex-row sm:mt-8 sm:flex-wrap sm:gap-3">
-            <button className="w-full rounded-full border border-[#1f120a] bg-espresso px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#1f120a] min-[420px]:w-auto sm:px-6 sm:py-3">Order on WhatsApp</button>
-            <button className="w-full rounded-full border border-white/85 bg-transparent px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15 min-[420px]:w-auto sm:px-6 sm:py-3">Explore Our Menu</button>
+            <button
+              type="button"
+              className="w-full rounded-full border border-[#1f120a] bg-espresso px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/30 transition hover:-translate-y-0.5 hover:bg-[#1f120a] min-[420px]:w-auto sm:px-6 sm:py-3"
+            >
+              Order on WhatsApp
+            </button>
+            <button
+              type="button"
+              className="w-full rounded-full border-2 border-white/90 bg-transparent px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15 min-[420px]:w-auto sm:px-6 sm:py-3"
+            >
+              Explore Our Menu
+            </button>
           </div>
         </div>
       </div>
