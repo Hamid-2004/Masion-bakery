@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    @apply min-h-full max-w-full overflow-x-hidden;
+  }
+
+  body {
+    @apply m-0 overflow-x-hidden bg-cream font-body text-espresso antialiased;
+  }
+
+  img,
+  video,
+  svg {
+    @apply max-w-full;
+  }
+}
